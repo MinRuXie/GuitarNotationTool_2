@@ -1,0 +1,174 @@
+@charset "UTF-8";
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #242424;
+}
+
+/* 歌名 */
+.title {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 5px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: #FFF;
+  letter-spacing: 2px;
+}
+
+/* 琴頸 */
+.line {
+  width: 100%;
+  height: 100px;
+  background-color: #000;
+  /* 消除子元素 inlic-block 的上下間隔 */
+  line-height: 0;
+}
+.line .note-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  width: calc((100% / 20) - 4.6px);
+  height: 100%;
+  /* 弦 */
+}
+.line .note-wrap .chord {
+  /* 依照內容決定寬度 */
+  width: 100%;
+  display: inline-block;
+  /* 子元素不換行 */
+  white-space: nowrap;
+  height: calc(100% / 6);
+  position: relative;
+  background-color: #2f2622;
+  /* 格子 */
+}
+.line .note-wrap .chord::before {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.line .note-wrap .chord:nth-of-type(1)::before {
+  height: 1px;
+}
+.line .note-wrap .chord:nth-of-type(2)::before {
+  height: 1.5px;
+}
+.line .note-wrap .chord:nth-of-type(3)::before {
+  height: 2px;
+}
+.line .note-wrap .chord:nth-of-type(4)::before {
+  height: 1.5px;
+}
+.line .note-wrap .chord:nth-of-type(5)::before {
+  height: 2px;
+}
+.line .note-wrap .chord:nth-of-type(6)::before {
+  height: 2.5px;
+}
+.line .note-wrap .chord.bass::before {
+  background-color: #999;
+}
+.line .note-wrap .chord.treble::before {
+  background-color: #625550;
+}
+.line .note-wrap .chord .grid {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.line .note-wrap .chord .grid:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.line .note-wrap .chord .grid span {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 音階 */
+}
+.line .note-wrap .chord .grid span.note-3 {
+  color: #FFB11B;
+}
+.line .note-wrap .chord .grid span.note-4 {
+  color: #90B44B;
+}
+.line .note-wrap .chord .grid span.note-5 {
+  color: #58B2DC;
+}
+.line .note-wrap .chord .grid span.note-6 {
+  color: #005CAF;
+}
+.line .note-wrap .chord .grid span.note-7 {
+  color: #A8497A;
+}
+
+/* 載入動畫 */
+.loading {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background: #000;
+  width: 100%;
+  height: 100%;
+}
+.loading img {
+  position: absolute;
+  width: 10%;
+  top: 40%;
+  left: 50%;
+  transform: translateY(-50%);
+  /* 扣掉自己的 50% 高度 */
+  transform: translateX(-50%);
+  /* 扣掉自己的 50% 高度 */
+}
+
+* {
+  /* 不能反白 */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+  font-family: "Galindo", "Noto Sans TC", cursive;
+}
+
+/* 警告畫面 */
+.warn_size {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  z-index: 99;
+}
+@media screen and (orientation: portrait) {
+  .warn_size {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.warn_size img {
+  width: 50vw;
+}
+.warn_size span {
+  font-size: 24px;
+  letter-spacing: 5px;
+}
+
+/*# sourceMappingURL=style.css.map */
