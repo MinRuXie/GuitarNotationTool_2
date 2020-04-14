@@ -29,9 +29,12 @@ html, body {
 .line .note-wrap {
   display: inline-flex;
   flex-direction: column;
-  width: calc((100% / 20) - 4.6px);
+  width: calc((100% / 20) - 1px);
   height: 100%;
   /* 弦 */
+}
+.line .note-wrap + .note-wrap {
+  margin-left: 1px;
 }
 .line .note-wrap .chord {
   /* 依照內容決定寬度 */

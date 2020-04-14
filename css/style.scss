@@ -44,8 +44,12 @@ html, body {
     .note-wrap {
         display: inline-flex;
         flex-direction: column;
-        width: calc((100% / 20) - 4.6px);
+        width: calc((100% / 20) - 1px);
         height: 100%;
+
+        &+.note-wrap {
+            margin-left: 1px;
+        }
 
         /* 弦 */
         .chord {

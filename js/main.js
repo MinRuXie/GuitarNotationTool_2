@@ -42,16 +42,8 @@ $(function(){
     // 軌道
     let line_html = `<div class="line"></div>`;
 
-    // 音符組
-    let note_group_html = `
-        <div class="note-wrap">
-            <div class="chord treble"><div class="grid"><span></span></div></div>
-            <div class="chord treble"><div class="grid"><span></span></div></div>
-            <div class="chord treble"><div class="grid"><span></span></div></div>
-            <div class="chord bass"><div class="grid"><span></span></div></div>
-            <div class="chord bass"><div class="grid"><span></span></div></div>
-            <div class="chord bass"><div class="grid"><span></span></div></div>
-        </div>`;
+    // 格子組
+    let note_group_html = `<div class="note-wrap"></div>`;
     
     /* 建立軌道 */
     function addNoteLine() {
@@ -62,9 +54,28 @@ $(function(){
         // 加入音符組
         for (let i=0 ; i < 20 ; i++) {
             $line.append(note_group_html);
+            let $cur_note_wrap = $line.find('.note-wrap').last();
+
+            // 加入格子
+            for (let j=0 ; j < 6 ; j++) {
+                if (j < 3) {
+                    $cur_note_wrap.append(`<div class="chord treble"><div class="grid" data-chord="${j+1}"></div></div>`);
+                } else {
+                    $cur_note_wrap.append(`<div class="chord bass"><div class="grid" data-chord="${j+1}"></div></div>`);
+                }
+            }
+            
         }
     }
 
     /* 初始化 */
     addNoteLine(); // 建立軌道
+
+
+    /* Event Binding */
+    $('.grid').each(function(index){
+        $(this).on('click', function(event){
+            console.log($(this).attr('data-chord'));
+        });
+    });
 });
