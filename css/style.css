@@ -46,6 +46,7 @@ html, body {
   position: relative;
   background-color: #2f2622;
   /* 格子 */
+  /* 選單容器 */
 }
 .line .note-wrap .chord::before {
   content: "";
@@ -86,10 +87,24 @@ html, body {
   display: inline-block;
   position: relative;
   cursor: pointer;
-  transition: 0.3s;
 }
 .line .note-wrap .chord .grid:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.line .note-wrap .chord .grid input {
+  display: inline-block;
+  width: 35px;
+  height: 100%;
+  border: none;
+  font-size: 14px;
+  /* hide arrow */
+}
+.line .note-wrap .chord .grid input:focus {
+  outline: none;
+}
+.line .note-wrap .chord .grid input::-webkit-outer-spin-button, .line .note-wrap .chord .grid input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .line .note-wrap .chord .grid span {
   display: inline-block;
@@ -113,6 +128,61 @@ html, body {
 }
 .line .note-wrap .chord .grid span.note-7 {
   color: #A8497A;
+}
+.line .note-wrap .chord .menu {
+  display: none;
+  /* 按鈕 */
+  /* 下拉式選單 */
+}
+.line .note-wrap .chord .menu.active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  transform: translate(55%);
+}
+.line .note-wrap .chord .menu .ok,
+.line .note-wrap .chord .menu .cancel {
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 100px;
+  border: 0.5px solid #242424;
+  transition: 0.3s;
+}
+.line .note-wrap .chord .menu .ok:hover,
+.line .note-wrap .chord .menu .cancel:hover {
+  background-color: #FFF;
+}
+.line .note-wrap .chord .menu select option {
+  /* 音階 */
+}
+.line .note-wrap .chord .menu select option.note-3 {
+  background-color: #FFB11B;
+}
+.line .note-wrap .chord .menu select option.note-4 {
+  background-color: #90B44B;
+}
+.line .note-wrap .chord .menu select option.note-5 {
+  background-color: #58B2DC;
+}
+.line .note-wrap .chord .menu select option.note-6 {
+  background-color: #005CAF;
+}
+.line .note-wrap .chord .menu select option.note-7 {
+  background-color: #A8497A;
 }
 
 /* 載入動畫 */

@@ -44,27 +44,36 @@ $(function(){
 
     // 格子組
     let note_group_html = `<div class="note-wrap"></div>`;
+
+    // 選單
+    let menu_html = `<div class="grid"></div><div class="menu"><select name="note"></select><div class="ok">V</div><div class="cancel">X</div></div>`;
     
     /* 建立軌道 */
     function addNoteLine() {
-        // 加入軌道
+        // 面版加入軌道
         $note_panel.append(line_html);
         let $line = $('.line').last();
 
-        // 加入音符組
+        // 軌道加入音符組
         for (let i=0 ; i < 20 ; i++) {
             $line.append(note_group_html);
             let $cur_note_wrap = $line.find('.note-wrap').last();
 
-            // 加入格子
+            // 音符組加入內容
             for (let j=0 ; j < 6 ; j++) {
                 if (j < 3) {
-                    $cur_note_wrap.append(`<div class="chord treble"><div class="grid" data-chord="${j+1}"></div></div>`);
+                    $cur_note_wrap.append(`<div class="chord treble">${menu_html}</div>`);
                 } else {
-                    $cur_note_wrap.append(`<div class="chord bass"><div class="grid" data-chord="${j+1}"></div></div>`);
+                    $cur_note_wrap.append(`<div class="chord bass">${menu_html}</div>`);
+                }
+
+                // 選單中加入選項
+                let $cur_select = $cur_note_wrap.find('.menu select').last();
+                $cur_select.append('<option data-chord="none" value="none">none</option>');
+                for (let k=0 ; k < 22 ; k++) {
+                    $cur_select.append(`<option data-chord="${j+1}" data-note="${notes_array_2[j][k]}" class="note-${notes_array_3[j][k]}" value="${notes_array[j][k]}">${k}</option>`);
                 }
             }
-            
         }
     }
 
@@ -74,8 +83,23 @@ $(function(){
 
     /* Event Binding */
     $('.grid').each(function(index){
+        /* grid */
         $(this).on('click', function(event){
-            console.log($(this).attr('data-chord'));
+            // open the menu
+            $('.menu').removeClass('active');
+            $(this).siblings('.menu').addClass('active');
+        });
+
+        /* menu - ok */
+        $(this).siblings('.menu').find('.ok').on('click', function(event){
+            // closed the menu
+            $(this).parents('.menu').removeClass('active');
+        });
+
+        /* menu - cancel */
+        $(this).siblings('.menu').find('.cancel').on('click', function(event){
+            // closed the menu
+            $(this).parents('.menu').removeClass('active');
         });
     });
 });
