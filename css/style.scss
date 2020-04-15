@@ -184,7 +184,6 @@ html, body {
 
                 /* 下拉式選單 */
                 select {
-
                     option {
                         /* 音階 */
                         &.note-3 { background-color: $color-note-3; }
@@ -197,8 +196,6 @@ html, body {
             }
         }
     }
-
-    
 }
 
 /* 載入動畫 */
