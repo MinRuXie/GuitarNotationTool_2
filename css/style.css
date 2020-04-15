@@ -6,6 +6,10 @@ html, body {
   background-color: #242424;
 }
 
+#main {
+  margin: 20px 0;
+}
+
 /* 歌名 */
 .title {
   width: 100%;
@@ -18,13 +22,39 @@ html, body {
   letter-spacing: 2px;
 }
 
+/* 按鈕 */
+.button {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 40px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+.button:hover {
+  background-color: #FFF;
+}
+
 /* 琴頸 */
 .line {
   width: 100%;
   height: 100px;
   background-color: #000;
+  margin-bottom: 30px;
+  position: relative;
   /* 消除子元素 inlic-block 的上下間隔 */
   line-height: 0;
+  /* 刪除按鈕 */
+  /* 音符組容器 */
+}
+.line .del {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
 }
 .line .note-wrap {
   display: inline-flex;
@@ -90,21 +120,6 @@ html, body {
 }
 .line .note-wrap .chord .grid:hover {
   background-color: rgba(255, 255, 255, 0.4);
-}
-.line .note-wrap .chord .grid input {
-  display: inline-block;
-  width: 35px;
-  height: 100%;
-  border: none;
-  font-size: 14px;
-  /* hide arrow */
-}
-.line .note-wrap .chord .grid input:focus {
-  outline: none;
-}
-.line .note-wrap .chord .grid input::-webkit-outer-spin-button, .line .note-wrap .chord .grid input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 .line .note-wrap .chord .grid span {
   display: inline-block;

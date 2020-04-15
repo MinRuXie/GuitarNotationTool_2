@@ -20,6 +20,10 @@ html, body {
     background-color: $color-dark-black;
 }
 
+#main {
+    margin: 20px 0;
+}
+
 /* 歌名 */
 .title {
     width: 100%;
@@ -32,15 +36,43 @@ html, body {
     letter-spacing: 2px;
 }
 
+/* 按鈕 */
+.button {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #FFF;
+    }
+}
+
 /* 琴頸 */
 .line {
     width: 100%;
     height: 100px;
     background-color: $color-pure-black;
+    margin-bottom: 30px;
+    position: relative;
 
     /* 消除子元素 inlic-block 的上下間隔 */
     line-height: 0;
 
+    /* 刪除按鈕 */
+    .del {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateY(-100%);
+    }
+
+    /* 音符組容器 */
     .note-wrap {
         display: inline-flex;
         flex-direction: column;
@@ -94,36 +126,7 @@ html, body {
 
                 &:hover {background-color: rgba($color-white, 0.4);}
 
-                
-
-                input {
-                    display: inline-block;
-                    width: 35px;
-                    height: 100%;
-                    border: none;
-                    font-size: 14px;
-
-                    &:focus {
-                        outline: none;
-                    }
-                 
-                    /* hide arrow */
-                    &::-webkit-outer-spin-button,
-                    &::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                    }
-                }
-
-                
-                
-                
-
-
-
-
-
-
+                /* 音符 */
                 span {
                     display: inline-block;
                     position: absolute;
