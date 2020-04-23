@@ -43,7 +43,7 @@ html, body {
     height: 20px;
     font-size: 12px;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.3s;
@@ -51,6 +51,11 @@ html, body {
     &:hover {
         background-color: #FFF;
     }
+}
+
+/* 新增按鈕 */
+.add {
+    margin: 0 auto;
 }
 
 /* 琴頸 */
@@ -124,7 +129,10 @@ html, body {
                 position: relative;
                 cursor: pointer;
 
-                &:hover {background-color: rgba($color-white, 0.4);}
+                &:hover,
+                &.selected {
+                    background-color: rgba($color-white, 0.4);
+                }
 
                 /* 音符 */
                 span {
@@ -158,7 +166,7 @@ html, body {
                     top: 0;
                     left: 0;
                     z-index: 50;
-                    transform: translate(55%);
+                    transform: translate(35%, -30%);
                 }
 
                 /* 按鈕 */

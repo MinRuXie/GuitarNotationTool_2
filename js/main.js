@@ -41,9 +41,6 @@ $(function(){
     let $note_panel = $('.note-panel');
     let $add_line_btn = $('.add');
 
-    // 選單
-    let menu_html = `<div class="grid"></div><div class="menu"><select name="note"></select><div class="ok">V</div><div class="cancel">X</div></div>`;
-    
     /* 建立軌道 */
     function addNoteLine() {
         // 面版加入軌道
@@ -57,17 +54,17 @@ $(function(){
 
             // 音符組加入內容
             for (let j=0 ; j < 6 ; j++) {
-                if (j < 3) {
-                    $cur_note_wrap.append(`<div data-chord="${j+1}" class="chord treble">${menu_html}</div>`);
-                } else {
-                    $cur_note_wrap.append(`<div data-chord="${j+1}" class="chord bass">${menu_html}</div>`);
-                }
+                let class_name = (j < 3) ? 'treble' : 'bass'; // 高音弦:低音弦
+                let content_html = `<div data-chord="${j+1}" class="chord ${class_name}"><div class="grid"></div><div class="menu">第${j+1}弦<select name="note"></select><div class="ok">V</div><div class="cancel">X</div></div></div>`;
+                $cur_note_wrap.append(content_html);
 
                 // 選單中加入選項
                 let $cur_select = $cur_note_wrap.find('.menu select').last();
-                $cur_select.append('<option value="none">none</option>');
+                $cur_select.append('<option value="none">無音符</option>');
                 for (let k=0 ; k < 22 ; k++) {
-                    $cur_select.append(`<option class="note-${notes_array_3[j][k]}" value="${k}">${k}</option>`);
+                    let text = (k != 0) ? `第${k}格` : '空弦';
+                    let option_html = `<option class="note-${notes_array_3[j][k]}" value="${k}">${text}</option>`;
+                    $cur_select.append(option_html);
                 }
             }
         }
@@ -79,6 +76,10 @@ $(function(){
                 // open the menu
                 $('.menu').removeClass('active');
                 $(this).siblings('.menu').addClass('active');
+                
+                // add grid selected style
+                $('.grid').removeClass('selected');
+                $(this).addClass('selected');
             });
 
             /* menu - ok */
@@ -101,12 +102,18 @@ $(function(){
                 
                 // closed the menu
                 $(this).parents('.menu').removeClass('active');
+
+                // remove grid selected style
+                $(this).parents('.menu').siblings('.grid').removeClass('selected');
             });
 
             /* menu - cancel */
             $(this).siblings('.menu').find('.cancel').on('click', function(event){
                 // closed the menu
                 $(this).parents('.menu').removeClass('active');
+
+                // remove grid selected style
+                $(this).parents('.menu').siblings('.grid').removeClass('selected');
             });
         });
 
