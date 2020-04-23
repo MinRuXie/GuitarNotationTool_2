@@ -41,24 +41,24 @@ $(function(){
     let $note_panel = $('.note-panel');
     let $add_line_btn = $('.add');
 
-    /* 建立軌道 */
+    /* build note line */
     function addNoteLine() {
-        // 面版加入軌道
+        // add line to panel
         $note_panel.append(`<div class="line"><div class="button del">刪除</div></div>`);
         let $line = $('.line').last();
 
-        // 軌道加入音符組
+        // add note groups to line
         for (let i=0 ; i < 20 ; i++) {
             $line.append(`<div class="note-wrap"></div>`);
             let $cur_note_wrap = $line.find('.note-wrap').last();
 
-            // 音符組加入內容
+            // add contents to note group
             for (let j=0 ; j < 6 ; j++) {
                 let class_name = (j < 3) ? 'treble' : 'bass'; // 高音弦:低音弦
                 let content_html = `<div data-chord="${j+1}" class="chord ${class_name}"><div class="grid"></div><div class="menu">第${j+1}弦<select name="note"></select><div class="ok">V</div><div class="cancel">X</div></div></div>`;
                 $cur_note_wrap.append(content_html);
 
-                // 選單中加入選項
+                // add options to select
                 let $cur_select = $cur_note_wrap.find('.menu select').last();
                 $cur_select.append('<option value="none">無音符</option>');
                 for (let k=0 ; k < 22 ; k++) {
@@ -84,13 +84,13 @@ $(function(){
 
             /* menu - ok */
             $(this).siblings('.menu').find('.ok').on('click', function(event){
-                // 取得下拉式選單的 value
+                // get option's value of select
                 let grid = $(this).siblings('select').val();
                 
-                // 清除音符
+                // remove note
                 $(this).parents('.menu').siblings('.grid').find('.note').remove();
 
-                // 檢查
+                // check
                 if (grid != "none") {
                     let chord = $(this).parents('.chord').attr('data-chord');
                     let note_s = notes_array[chord - 1][grid];
@@ -119,14 +119,14 @@ $(function(){
 
         /* del line btn */
         $line.find('.del').on('click', function(event){
-            // 檢查
+            // check
             if ($note_panel.find('.line').length > 1) {
                 $(this).parents('.line').remove();
             }
         });
     }
 
-    /* 修改歌名 */
+    /* modify song name */
     $('.title').on('dblclick', function(event){
         var pre_name = $('.title').html(); // 預設值為上次輸入的歌名
         var decodeHtml = htmlDecode(pre_name); //用浏览器内部转换器实现html解码
@@ -138,12 +138,12 @@ $(function(){
         $('.title').text(song_name); // 顯示新歌名
     });
 
-    /* 初始化 */
-    addNoteLine(); // 建立軌道
+    /* initialization */
+    addNoteLine(); // build line
 
-    /* add line btn */
+    /* event binding: add line btn */
     $add_line_btn.on('click', function(event){
-        addNoteLine(); // 建立軌道
+        addNoteLine(); // build line
     });
 
     //---------------------------------------------
